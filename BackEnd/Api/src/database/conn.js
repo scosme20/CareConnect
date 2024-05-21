@@ -1,13 +1,19 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-async function main() {
-    try {
-        await mongoose.connect(process.env.DATABASE);
-        console.log('Conectado no banco');
-    } catch (error) {
-        console.error(error);
-    }
-}
+dotenv.config();
 
-export default main;
+const conn = async () => {
+  try {
+    await mongoose.connect(process.env.DATABASE, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('Database connected successfully');
+  } catch (error) {
+    console.error('Database connection failed:', error);
+    throw error;
+  }
+};
 
+export default conn;
