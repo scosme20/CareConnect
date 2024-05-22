@@ -1,4 +1,4 @@
-import VolunteerModel from '../../Models/volunteersModel.js';
+import VolunteerModel from '../Models/volunteersModel.js';
 
 class VolunteerRepository {
   async createVolunteer(data) {

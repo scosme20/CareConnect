@@ -1,4 +1,4 @@
-import VolunteerRepository from "../repositories/volunteer/volunteerRepository.js";
+import VolunteerRepository from "../repositories/volunteerRepository.js";
 
 class VolunteerController {
   constructor() {
@@ -65,6 +65,7 @@ class VolunteerController {
   }
 }
 
-export default  VolunteerController;
+export default VolunteerController;
+
 
 
