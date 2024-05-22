@@ -6,8 +6,8 @@ const volunteerController = new VolunteerController();
 
 router.post('/volunteer', volunteerController.createVolunteerGroup.bind(volunteerController));
 router.get('/volunteer', volunteerController.getAllVolunteerGroups.bind(volunteerController));
-router.get('/volunteer:id', volunteerController.getVolunteerGroupById.bind(volunteerController));
-router.put('/:id', volunteerController.updateVolunteerGroup.bind(volunteerController));
-router.delete('/volunteer:id', volunteerController.deleteVolunteerGroup.bind(volunteerController));
+router.get('/volunteer/:id', volunteerController.getVolunteerGroupById.bind(volunteerController));
+router.put('/volunteer/:id', volunteerController.updateVolunteerGroup.bind(volunteerController));
+router.delete('/volunteer/:id', volunteerController.deleteVolunteerGroup.bind(volunteerController));
 
 export default router;
