@@ -9,10 +9,10 @@ router.post('/homeless', HomelessController.createHomeless);
 
 router.get('/homeless', HomelessController.getAllHomeless);
 
-router.get('/homeless', HomelessController.getHomelessById);
+router.get('/homeless/:id', HomelessController.getHomelessById);
 
-router.put('/homeless', HomelessController.updateHomeless);
+router.put('/homeless/:id', HomelessController.updateHomeless);
 
-router.delete('/homeless', HomelessController.deleteHomeless);
+router.delete('/homeless/:id', HomelessController.deleteHomeless);
 
 export default router

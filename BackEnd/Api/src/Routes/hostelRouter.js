@@ -9,10 +9,10 @@ router.post('/hostel', HostelController.createHostel);
 
 router.get('/hostel', HostelController.getAllHostels);
 
-router.get('/hostel', HostelController.getHostelById);
+router.get('/hostel/:id', HostelController.getHostelById);
 
-router.put('/hostel', HostelController.updateHostel);
+router.put('/hostel/:id', HostelController.updateHostel);
 
-router.delete('/hostel', HostelController.deleteHostel);
+router.delete('/hostel/:id', HostelController.deleteHostel);
 
 export default router

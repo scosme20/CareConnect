@@ -9,10 +9,10 @@ router.post('/volunteer', VolunteerController.createVolunteerGroup);
 
 router.get('/volunteer', VolunteerController.getAllVolunteerGroups);
 
-router.get('/volunteer', VolunteerController.getVolunteerGroupById);
+router.get('/volunteer/:id', VolunteerController.getVolunteerGroupById);
 
-router.put('/volunteer', VolunteerController.updateVolunteerGroup);
+router.put('/volunteer/:id', VolunteerController.updateVolunteerGroup);
 
-router.delete('/volunteer', VolunteerController.deleteVolunteerGroup);
+router.delete('/volunteer/:id', VolunteerController.deleteVolunteerGroup);
 
 export default router
