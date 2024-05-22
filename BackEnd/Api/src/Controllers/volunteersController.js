@@ -1,14 +1,10 @@
-import VolunteerRepository from "../repositories/volunteerRepository.js";
+import VolunteerModel from '../Models/volunteersModel.js';
 
 class VolunteerController {
-  constructor() {
-    this.volunteerRepository = new VolunteerRepository();
-  }
-
   async createVolunteer(req, res) {
     try {
       const { body } = req;
-      const newVolunteer = await this.volunteerRepository.createVolunteer(body);
+      const newVolunteer = await VolunteerModel.create(body);
       return res.status(201).json(newVolunteer);
     } catch (error) {
       return res.status(500).json({ error: error.message });
@@ -17,7 +13,7 @@ class VolunteerController {
 
   async getAllVolunteers(req, res) {
     try {
-      const volunteers = await this.volunteerRepository.getAllVolunteers();
+      const volunteers = await VolunteerModel.find();
       return res.status(200).json(volunteers);
     } catch (error) {
       return res.status(500).json({ error: error.message });
@@ -27,9 +23,9 @@ class VolunteerController {
   async getVolunteerById(req, res) {
     try {
       const { id } = req.params;
-      const volunteer = await this.volunteerRepository.getVolunteerById(id);
+      const volunteer = await VolunteerModel.findById(id);
       if (!volunteer) {
-        return res.status(404).json({ message: 'Voluntário não encontrado' });
+        return res.status(404).json({ message: 'Volunteer not found' });
       }
       return res.status(200).json(volunteer);
     } catch (error) {
@@ -41,9 +37,9 @@ class VolunteerController {
     try {
       const { id } = req.params;
       const { body } = req;
-      const updatedVolunteer = await this.volunteerRepository.updateVolunteer(id, body);
+      const updatedVolunteer = await VolunteerModel.findByIdAndUpdate(id, body, { new: true });
       if (!updatedVolunteer) {
-        return res.status(404).json({ message: 'Voluntário não encontrado' });
+        return res.status(404).json({ message: 'Volunteer not found' });
       }
       return res.status(200).json(updatedVolunteer);
     } catch (error) {
@@ -54,9 +50,9 @@ class VolunteerController {
   async deleteVolunteer(req, res) {
     try {
       const { id } = req.params;
-      const deletedVolunteer = await this.volunteerRepository.deleteVolunteer(id);
+      const deletedVolunteer = await VolunteerModel.findByIdAndDelete(id);
       if (!deletedVolunteer) {
-        return res.status(404).json({ message: 'Voluntário não encontrado' });
+        return res.status(404).json({ message: 'Volunteer not found' });
       }
       return res.status(200).json(deletedVolunteer);
     } catch (error) {
@@ -66,6 +62,7 @@ class VolunteerController {
 }
 
 export default VolunteerController;
+
 
 
 

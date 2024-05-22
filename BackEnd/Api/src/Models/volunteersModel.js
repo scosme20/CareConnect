@@ -1,15 +1,22 @@
-import mongoose, { Schema, model } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 const volunteerSchema = new Schema({
-  nome: String,
-  correspondencia: String,
-  agendamento: String,
-  reconhecimento: String
+  name: {
+    type: String,
+    required: true
+  },
+  role: {
+    type: String,
+    required: true
+  },
+  shift: String,
+  contact: String
 }, { timestamps: true });
 
-const VolunteerModel = model('Volunteer', volunteerSchema);
+const VolunteerModel = mongoose.model('Volunteer', volunteerSchema);
 
 export default VolunteerModel;
+
 
 
 
