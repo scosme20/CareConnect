@@ -69,32 +69,11 @@ const hostelSchema = new Schema({
     required: true
   },
 
-  servicos: [String],
+  servicos: {
+    type: String,
+    required:true
+  }
 
-  avaliacoes: [{
-    usuario: String,
-    comentario: String,
-    classificacao: Number // De 1 a 5
-  }],
- 
-  reservas: [{
-    moradorRuaId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Homeless'
-    },
-    dataCheckIn: Date,
-    dataCheckOut: Date
-  }],
-
-  doacoesRecebidas: [{
-    tipo: String,
-    quantidade: Number,
-    origem: String,
-    dataRecebimento: {
-      type: Date,
-      default: Date.now
-    }
-  }]
 }, { timestamps: true }); 
 
 
