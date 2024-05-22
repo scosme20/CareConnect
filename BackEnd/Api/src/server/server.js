@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import conn from '../database/conn.js';
-import router from '../routes/router.js';
+import router from '../Routes/router.js';
 import logger from '../logs/logger.js';
 
 dotenv.config();
@@ -13,13 +13,16 @@ app.use(express.json());
 app.use(cors());
 app.use('/api', router);
 
-
 app.post('/logs', (req, res) => {
   const { level, message } = req.body;
-  logger.log(level, message);
+
+  if (!level || !message) {
+    return res.status(400).send('Level and message are required');
+  }
+
+  logger.log(level.toUpperCase(), message);
   res.status(200).send('Log received');
 });
-
 
 conn().then(() => {
   const PORT = process.env.PORT || 8555;

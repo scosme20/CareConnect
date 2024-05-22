@@ -7,21 +7,20 @@ class Logger {
       return Logger.instance;
     }
 
-    const logsDir = path.resolve('../../logs'); 
+    const logsDir = path.resolve('logs'); // Corrigido o caminho relativo
     if (!fs.existsSync(logsDir)) {
       try {
-        fs.mkdirSync(logsDir, { recursive: true }); 
+        fs.mkdirSync(logsDir, { recursive: true });
       } catch (error) {
         console.error('Failed to create logs directory:', error);
       }
     }
 
     this.logFilePath = path.join(logsDir, 'app.log');
-
     Logger.instance = this;
   }
 
-  async log(level, message) {
+  log(level, message) {
     const logMessage = `${new Date().toISOString()} - ${level}: ${message}\n`;
     fs.appendFile(this.logFilePath, logMessage, (err) => {
       if (err) {
@@ -39,7 +38,8 @@ class Logger {
   }
 }
 
-const instance = new Logger();
-Object.freeze(instance);
+const logger = new Logger();
+Object.freeze(logger);
 
-export default instance;
+export default logger;
+
