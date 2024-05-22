@@ -1,18 +1,13 @@
 import express from 'express';
-
-import VolunteerController from '../Controllers/volunteersController.js'
+import VolunteerController from '../Controllers/volunteersController.js';
 
 const router = express.Router();
+const volunteerController = new VolunteerController();
 
+router.post('/', volunteerController.createVolunteerGroup.bind(volunteerController));
+router.get('/', volunteerController.getAllVolunteerGroups.bind(volunteerController));
+router.get('/:id', volunteerController.getVolunteerGroupById.bind(volunteerController));
+router.put('/:id', volunteerController.updateVolunteerGroup.bind(volunteerController));
+router.delete('/:id', volunteerController.deleteVolunteerGroup.bind(volunteerController));
 
-router.post('/volunteer', VolunteerController.createVolunteerGroup);
-
-router.get('/volunteer', VolunteerController.getAllVolunteerGroups);
-
-router.get('/volunteer/:id', VolunteerController.getVolunteerGroupById);
-
-router.put('/volunteer/:id', VolunteerController.updateVolunteerGroup);
-
-router.delete('/volunteer/:id', VolunteerController.deleteVolunteerGroup);
-
-export default router
+export default router;

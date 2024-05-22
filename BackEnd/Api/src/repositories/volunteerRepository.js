@@ -1,23 +1,26 @@
-import VolunteerModels from '../Models/volunteersModel';
+// volunteerRepository.js
+import VolunteerModel from '../Models/volunteersModel.js';
 
-export default class VolunteerRepository {
-  static async createVolunteerGroup(volunteerGroupData) {
-    return await VolunteerModels.create(volunteerGroupData);
+class VolunteerRepository {
+  async createVolunteerGroup(volunteerGroupData) {
+    return await VolunteerModel.create(volunteerGroupData);
   }
 
-  static async getAllVolunteerGroups() {
-    return await VolunteerModels.find();
+  async getAllVolunteerGroups() {
+    return await VolunteerModel.find();
   }
 
-  static async getVolunteerGroupById(id) {
-    return await VolunteerModels.findById(id);
+  async getVolunteerGroupById(id) {
+    return await VolunteerModel.findById(id);
   }
 
-  static async updateVolunteerGroup(id, newData) {
-    return await VolunteerModels.findByIdAndUpdate(id, newData, { new: true });
+  async updateVolunteerGroup(id, newData) {
+    return await VolunteerModel.findByIdAndUpdate(id, newData, { new: true });
   }
 
-  static async deleteVolunteerGroup(id) {
-    return await VolunteerModels.findByIdAndDelete(id);
+  async deleteVolunteerGroup(id) {
+    return await VolunteerModel.findByIdAndDelete(id);
   }
 }
+
+export default VolunteerRepository;

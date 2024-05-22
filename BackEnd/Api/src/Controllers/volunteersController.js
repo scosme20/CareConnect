@@ -1,88 +1,69 @@
-import VolunteerModels from '../Models/volunteersModel.js';
+import VolunteerRepository from "../repositories/volunteerRepository.js";
 
 class VolunteerController {
+  constructor() {
+    this.volunteerRepository = new VolunteerRepository();
+  }
 
-  static async createVolunteerGroup(req, res) {
+  async createVolunteerGroup(req, res) {
     try {
-      const { nomeGrupo, voluntarios, correspondencia, agendamento, reconhecimento } = req.body;
-
-      const newVolunteerGroup = await VolunteerModels.create({ nomeGrupo, voluntarios, correspondencia, agendamento, reconhecimento });
-
+      const { body } = req;
+      const newVolunteerGroup = await this.volunteerRepository.createVolunteerGroup(body);
       return res.status(201).json(newVolunteerGroup);
     } catch (error) {
-
       return res.status(500).json({ error: error.message });
     }
   }
 
-
-  static async getAllVolunteerGroups(req, res) {
+  async getAllVolunteerGroups(req, res) {
     try {
-
-      const volunteerGroups = await VolunteerModels.find();
-
+      const volunteerGroups = await this.volunteerRepository.getAllVolunteerGroups();
       return res.status(200).json(volunteerGroups);
     } catch (error) {
-
       return res.status(500).json({ error: error.message });
     }
   }
 
-
-  static async getVolunteerGroupById(req, res) {
+  async getVolunteerGroupById(req, res) {
     try {
       const { id } = req.params;
-
-      const volunteerGroup = await VolunteerModels.findById(id);
-
+      const volunteerGroup = await this.volunteerRepository.getVolunteerGroupById(id);
       if (!volunteerGroup) {
         return res.status(404).json({ message: 'Grupo de voluntariado não encontrado' });
       }
-
       return res.status(200).json(volunteerGroup);
     } catch (error) {
-
       return res.status(500).json({ error: error.message });
     }
   }
 
-
-  static async updateVolunteerGroup(req, res) {
+  async updateVolunteerGroup(req, res) {
     try {
       const { id } = req.params;
-      const newData = req.body;
-
-      const updatedVolunteerGroup = await VolunteerModels.findByIdAndUpdate(id, newData, { new: true });
-
+      const { body } = req;
+      const updatedVolunteerGroup = await this.volunteerRepository.updateVolunteerGroup(id, body);
       if (!updatedVolunteerGroup) {
         return res.status(404).json({ message: 'Grupo de voluntariado não encontrado' });
       }
-
       return res.status(200).json(updatedVolunteerGroup);
     } catch (error) {
-
       return res.status(500).json({ error: error.message });
     }
   }
 
-
-  static async deleteVolunteerGroup(req, res) {
+  async deleteVolunteerGroup(req, res) {
     try {
       const { id } = req.params;
-
-      const deletedVolunteerGroup = await VolunteerModels.findByIdAndDelete(id);
-
+      const deletedVolunteerGroup = await this.volunteerRepository.deleteVolunteerGroup(id);
       if (!deletedVolunteerGroup) {
         return res.status(404).json({ message: 'Grupo de voluntariado não encontrado' });
       }
-
       return res.status(200).json(deletedVolunteerGroup);
     } catch (error) {
-
       return res.status(500).json({ error: error.message });
     }
   }
 }
 
-
 export default VolunteerController;
+
