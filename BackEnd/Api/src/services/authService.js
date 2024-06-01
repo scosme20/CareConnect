@@ -1,6 +1,6 @@
-import bcrypt from 'bcryptjs'
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import UserRepository from '../repositories/userRepositories.js'
+import UserRepository from '../repositories/userRepositories.js';
 import { hashPassword, comparePassword } from '../utils/hashUtils.js';
 
 class AuthService {

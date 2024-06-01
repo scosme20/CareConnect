@@ -10,3 +10,4 @@ const comparePassword = async (password, hashedPassword) => {
 };
 
 export { hashPassword, comparePassword };
+

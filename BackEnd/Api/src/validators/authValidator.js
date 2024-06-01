@@ -26,3 +26,4 @@ const validateLogin = [
 ];
 
 export { validateRegister, validateLogin };
+
